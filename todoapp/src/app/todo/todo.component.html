@@ -1,43 +1,37 @@
 <div class="container">
-    <div class="row">
-      <div class="col-5 mx-auto">
-        <h3 class="bg-primary text-white p-3">Todo List</h3>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control">
-          <button class="btn btn-outline-primary">Add</button>
-        </div>
-        <div class="form-check mb-3">
-          <input type="checkbox" class="form-check-input" name="" id="displayAll">
-          <label form="displayAll" class="form-check-label">Hepsini Göster</label>
-        </div>
-  
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Description</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Kahvaltı</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Spor</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Alışveriş</td>
-              <td>No</td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <h3 class="bg-primary text-white p-3">{{ getName() }}'s Todo List</h3>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" />
+        <button class="btn btn-outline-primary">Add</button>
       </div>
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          name=""
+          id="displayAll"
+        />
+        <label form="displayAll" class="form-check-label">Show All</label>
+      </div>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of getItems(); let i = index">
+            <td>{{ i+1 }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.action }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+</div>
