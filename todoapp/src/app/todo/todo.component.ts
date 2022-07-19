@@ -10,10 +10,14 @@ import { TodoItem } from '../todoitem';
 export class TodoComponent {
   constructor() {}
   model = new Model();
+  message = '';
   getName() {
     return this.model.name;
   }
   getItems() {
     return this.model.items;
+  }
+  addItem(value: string) {
+    this.message = value;
   }
 }

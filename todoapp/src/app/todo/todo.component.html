@@ -3,8 +3,8 @@
     <div class="col-5 mx-auto">
       <h3 class="bg-primary text-white p-3">{{ getName() }}'s Todo List</h3>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" />
-        <button class="btn btn-outline-primary">Add</button>
+        <input #input type="text" class="form-control" />
+        <button class="btn btn-outline-primary"(click)="addItem(input.value)">Add</button>
       </div>
       <div class="form-check mb-3">
         <input
