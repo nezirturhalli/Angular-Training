@@ -7,13 +7,11 @@
           #input
           type="text"
           class="form-control"
-          (keyup.enter)="addItem(input.value)"
+          [(ngModel)]="inputText"
+          (keyup.enter)="addItem()"
         />
         <!-- //        (blur)="addItem(input.value)"/> -->
-        <button
-          class="btn btn-outline-primary"
-          (click)="addItem(input.value); input.value = ''"
-        >
+        <button [class]="getBtnClasses()" class="btn" (click)="addItem()">
           Add
         </button>
       </div>
@@ -45,7 +43,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of getItems(); let i = index">
+            <tr
+              *ngFor="let item of getItems(); let i = index"
+              [class]="{
+                'bg-primary': item.action,
+                'bg-warning': !item.action
+              }"
+            >
               <td>{{ i + 1 }}</td>
               <td>{{ item.description }}</td>
               <td>
@@ -74,8 +78,8 @@
                   No
                 </ng-template> -->
                 <!-- if-then-else bloğu -->
-                <div *ngIf="item.action; then yesTemplate else noTemplate">
-                  Burası asla  gösterilmez!!
+                <div *ngIf="item.action; then yesTemplate; else noTemplate">
+                  Burası asla gösterilmez!!
                 </div>
                 <ng-template #yesTemplate> Yes </ng-template>
                 <ng-template #noTemplate> No </ng-template>

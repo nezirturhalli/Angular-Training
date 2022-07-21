@@ -8,6 +8,7 @@ import { TodoItem } from '../todoitem';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  inputText: string = '';
   displayAll: boolean = false;
   constructor() {}
   model = new Model();
@@ -20,9 +21,10 @@ export class TodoComponent {
     }
     return this.model.items.filter((item) => !item.action);
   }
-  addItem(value: string) {
-    if (value != '') {
-      this.model.items.push({ description: value, action: false });
+  addItem() {
+    if (this.inputText != '') {
+      this.model.items.push({ description: this.inputText, action: false });
+      this.inputText = '';
     } else {
       alert('Please enter a value');
     }
@@ -30,5 +32,13 @@ export class TodoComponent {
 
   displayCount() {
     return this.model.items.filter((i) => i.action).length;
+  }
+
+  getBtnClasses() {
+    return {
+      disabled: this.inputText.length == 0,
+      'btn-secondary': this.inputText.length == 0,
+      'btn-primary': this.inputText.length > 0,
+    };
   }
 }
