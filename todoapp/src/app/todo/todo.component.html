@@ -28,38 +28,75 @@
         <label form="displayAll" class="form-check-label">Show All</label>
       </div>
 
-      <table class="table table-bordered" *ngIf="getItems.length > 0">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of getItems(); let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ item.description }}</td>
-            <td>
-              <!-- <div *ngIf="item.action">Yes</div>
-              <div *ngIf="!item.action">No</div> -->
-              <div [ngSwitch]="item.action">
-                <div *ngSwitchCase="true">Yes</div>
-                <div *ngSwitchDefault>No</div>
-              </div>
-            </td>
-            <td>
-              <input type="checkbox" [(ngModel)]="item.action" name="" id="" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-
-      <div class="alert alert-warning" *ngIf="getItems.length == 0">
-        No items found.
+      <div
+        class="alert alert-warning"
+        *ngIf="getItems().length == 0; else itemsTable"
+      >
+        All missions completed.
       </div>
-      
+
+      <ng-template #itemsTable>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of getItems(); let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.description }}</td>
+              <td>
+                <!-- if else bloğu -->
+
+                <!-- <div *ngIf="item.action">Yes</div>
+                <div *ngIf="!item.action">No</div> -->
+
+                <!-- <div [ngSwitch]="item.action">
+                  <div *ngSwitchCase="true">Yes</div>
+                  <div *ngSwitchDefault>No</div>
+                </div> -->
+
+                <!-- <div *ngIf="item.action; else noTemplate">
+                  Yes
+                </div>
+                <ng-template #noTemplate>
+                  No
+                </ng-template> -->
+
+                <!-- if-then bloğu -->
+                <!-- <div *ngIf="item.action; then noTemplate">
+                  Burası  asla gösterilmez!!
+                </div>
+                <ng-template #noTemplate>
+                  No
+                </ng-template> -->
+                <!-- if-then-else bloğu -->
+                <div *ngIf="item.action; then yesTemplate else noTemplate">
+                  Burası asla  gösterilmez!!
+                </div>
+                <ng-template #yesTemplate> Yes </ng-template>
+                <ng-template #noTemplate> No </ng-template>
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="item.action"
+                  name=""
+                  id=""
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+      <div class="my-2">
+        <p style="text-align: center">
+          {{ displayCount() }} missions completed.
+        </p>
+      </div>
     </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ export class Model {
     this.items = [
       { description: 'Breakfast', action: true },
       { description: 'Sports', action: false },
-      { description: 'Coffee', action: true },
+      { description: 'Coffee', action: true }
     ];
   }
 }
