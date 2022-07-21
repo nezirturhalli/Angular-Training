@@ -7,10 +7,10 @@ export class Model {
   constructor() {
     this.name = 'Nezir';
     this.items = [
-      { description: 'Breakfast', action: 'Yes' },
-      { description: 'Sports', action: 'Yes' },
-      { description: 'Coffee', action: 'No' },
-      { description: 'Shopping', action: 'Yes' },
+      { description: 'Breakfast', action: true },
+      { description: 'Sports', action: false },
+      { description: 'Coffee', action: true},
+      { description: 'Shopping', action: false },
     ];
   }
 }

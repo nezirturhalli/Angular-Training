@@ -8,17 +8,21 @@ import { TodoItem } from '../todoitem';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent {
+  displayAll: boolean = false;
   constructor() {}
   model = new Model();
   getName() {
     return this.model.name;
   }
   getItems() {
-    return this.model.items;
+    if(this.displayAll){
+      return this.model.items;
+    }
+    return this.model.items.filter(item => !item.action);
   }
   addItem(value: string) {
     if (value != '') {
-      this.model.items.push({ description: value, action: 'No' });
+      this.model.items.push({ description: value, action: false});
     } else {
       alert('Please enter a value');
     }
