@@ -10,7 +10,6 @@ import { TodoItem } from '../todoitem';
 export class TodoComponent {
   constructor() {}
   model = new Model();
-  message = '';
   getName() {
     return this.model.name;
   }
@@ -18,6 +17,10 @@ export class TodoComponent {
     return this.model.items;
   }
   addItem(value: string) {
-    this.message = value;
+    if (value != '') {
+      this.model.items.push({ description: value, action: 'No' });
+    } else {
+      alert('Please enter a value');
+    }
   }
 }
