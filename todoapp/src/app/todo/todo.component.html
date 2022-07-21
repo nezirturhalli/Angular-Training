@@ -30,7 +30,7 @@
         class="alert alert-warning"
         *ngIf="getItems().length == 0; else itemsTable"
       >
-        All missions completed.
+        Item not found.
       </div>
 
       <ng-template #itemsTable>
@@ -87,6 +87,7 @@
               <td>
                 <input
                   type="checkbox"
+                  (change)="onActionChanged(item)"
                   [(ngModel)]="item.action"
                   name=""
                   id=""

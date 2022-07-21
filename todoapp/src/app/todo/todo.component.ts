@@ -10,7 +10,9 @@ import { TodoItem } from '../todoitem';
 export class TodoComponent {
   inputText: string = '';
   displayAll: boolean = false;
-  constructor() {}
+  constructor() {
+    this.model.items = this.getItemsFromLS();
+  }
   model = new Model();
   getName() {
     return this.model.name;
@@ -23,7 +25,12 @@ export class TodoComponent {
   }
   addItem() {
     if (this.inputText != '') {
-      this.model.items.push({ description: this.inputText, action: false });
+      let data = { description: this.inputText, action: false };
+      this.model.items.push(data);
+
+      let items = this.getItemsFromLS();
+      items.push(data);
+      localStorage.setItem('items', JSON.stringify(items));
       this.inputText = '';
     } else {
       alert('Please enter a value');
@@ -40,5 +47,26 @@ export class TodoComponent {
       'btn-secondary': this.inputText.length == 0,
       'btn-primary': this.inputText.length > 0,
     };
+  }
+  getItemsFromLS() {
+    let items: TodoItem[] = [];
+    let value = localStorage.getItem('items');
+    if (value !== null) {
+      items = JSON.parse(value);
+    }
+    return items;
+  }
+  onActionChanged(item: TodoItem) {
+    console.log(item);
+    let items= this.getItemsFromLS();
+
+    localStorage.clear();
+    items.forEach(i =>{
+      if (i.description == item.description) {
+        i.action = item.action;
+
+      }
+    });
+    localStorage.setItem('items', JSON.stringify(items));
   }
 }

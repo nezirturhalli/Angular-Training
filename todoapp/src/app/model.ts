@@ -6,11 +6,7 @@ export class Model {
 
   constructor() {
     this.name = 'Nezir';
-    this.items = [
-      { description: 'Breakfast', action: true },
-      { description: 'Sports', action: false },
-      { description: 'Coffee', action: true }
-    ];
+    this.items = [];
   }
 }
 
