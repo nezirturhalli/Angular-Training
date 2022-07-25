@@ -11,6 +11,7 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {}
   movies: Movie[];
   movieRepository: MovieRepository;
+  title: string = 'Movies';
 
   constructor() {
     this.movieRepository = new MovieRepository();
