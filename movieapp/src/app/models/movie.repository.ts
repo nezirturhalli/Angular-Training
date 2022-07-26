@@ -8,7 +8,7 @@ export class MovieRepository {
       {
         id: 1,
         title: 'SHAZAM',
-        description: 'details of the movie',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis aperiam voluptas suscipit a. Nemo hic laborum cum molestias nostrum minima sapiente optio facilis nam. Fugiat libero obcaecati numquam quod!',
         imageUrl: '1.jpeg',
         isPopular: true,
         publishedDate: new Date(1990,10,12),
@@ -16,7 +16,7 @@ export class MovieRepository {
       {
         id: 2,
         title: 'AMAZING GRACE ARETHA FRANKLIN',
-        description: 'details of the movie',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis aperiam voluptas suscipit a. Nemo hic laborum cum molestias nostrum minima sapiente optio facilis nam. Fugiat libero obcaecati numquam quod!',
         imageUrl: '2.jpeg',
         isPopular: false,
         publishedDate: new Date(1990,2,13),
@@ -32,7 +32,7 @@ export class MovieRepository {
       {
         id: 4,
         title: 'BILBOARD',
-        description: 'details of the movie',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis aperiam voluptas suscipit a. Nemo hic laborum cum molestias nostrum minima sapiente optio facilis nam. Fugiat libero obcaecati numquam quod!',
         imageUrl: '4.jpeg',
         isPopular: false,
         publishedDate: new Date(1990,5,15),

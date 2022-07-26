@@ -47,10 +47,10 @@
         <div class="card-body">
           <h4 class="card-title">{{ item.title }}</h4>
           <p class="card-text">
-            {{ item.description }}
+            {{ item.description | summary}}
           </p>
            <p class="card-text">
-            {{ item.publishedDate | date:'fullDate'}}
+            {{ item.publishedDate | date:'dd/MM/y'}}
           </p>
           <button class="btn btn-sm btn-outline-primary">Details</button>
         </div>
@@ -82,3 +82,5 @@
     </div>
   </div>
 </ng-template>
+
+
