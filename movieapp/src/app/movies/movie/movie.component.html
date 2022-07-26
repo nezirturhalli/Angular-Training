@@ -1,24 +1,29 @@
-<div *ngIf="movies.length > 0; else noMovies">
-  <div class="alert alert-warning">{{ movies.length }} movies found.</div>
 
-  <ng-template
+<div *ngIf="movies.length > 0; else noMovies">
+  <!-- <div class="alert alert-warning">{{ movies.length }} movies found.</div> -->
+
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="filterText"
+      placeholder="Search for movies...">
+      <small class="text-muted" *ngIf="filterText">Looking for: {{filterText}}</small>
+  </div>
+
+  <!-- <ng-template
     [ngTemplateOutlet]="popularMovies"
     [ngTemplateOutletContext]="{ movies: movieRepository.getPopularMovies() }"
-  ></ng-template>
+  ></ng-template> -->
   <ng-template [ngTemplateOutlet]="movieList1"></ng-template>
- 
-
 </div>
 
-<ng-template #popularMovies let-popularList="movies">
+<!-- <ng-template #popularMovies let-popularList="movies">
   <h2>Popular Movies</h2>
   <div class="row row-cols-1 row-cols-md-5 g-4 mb-3">
     <div class="col" *ngFor="let item of popularList">
       <div class="card h-100">
-        <img
-          src="/assets/img/{{ item.imageUrl }}"
-          class="card-img-top"
-        />
+        <img src="/assets/img/{{ item.imageUrl }}" class="card-img-top" />
         <div class="card-body">
           <h5 class="card-title">{{ item.title | titlecase }}</h5>
           <p class="card-text">{{ item.description }}</p>
@@ -26,15 +31,16 @@
       </div>
     </div>
   </div>
-</ng-template>
+</ng-template> -->
 
 <ng-template #noMovies>
   <div class="alert alert-warning">Movies not found. Please try again.</div>
 </ng-template>
 <ng-template #movieList1>
+
   <h2>{{ title }}</h2>
 
-  <div class="card mb-3" *ngFor="let item of movies">
+  <div class="card mb-3" *ngFor="let item of movies | movieFilter:filterText">
     <div class="row">
       <div class="col-md-2">
         <img
@@ -47,10 +53,10 @@
         <div class="card-body">
           <h4 class="card-title">{{ item.title }}</h4>
           <p class="card-text">
-            {{ item.description | summary}}
+            {{ item.description | summary }}
           </p>
-           <p class="card-text">
-            {{ item.publishedDate | date:'dd/MM/y'}}
+          <p class="card-text">
+            {{ item.publishedDate | date: "dd/MM/y" }}
           </p>
           <button class="btn btn-sm btn-outline-primary">Details</button>
         </div>
@@ -82,5 +88,3 @@
     </div>
   </div>
 </ng-template>
-
-
