@@ -11,6 +11,7 @@ export class MovieRepository {
         description: 'details of the movie',
         imageUrl: '1.jpeg',
         isPopular: true,
+        publishedDate: new Date(1990,10,12),
       },
       {
         id: 2,
@@ -18,6 +19,7 @@ export class MovieRepository {
         description: 'details of the movie',
         imageUrl: '2.jpeg',
         isPopular: false,
+        publishedDate: new Date(1990,2,13),
       },
       {
         id: 3,
@@ -25,6 +27,7 @@ export class MovieRepository {
         description: 'details of the movie',
         imageUrl: '3.jpeg',
         isPopular: true,
+        publishedDate: new Date(1990,8,14),
       },
       {
         id: 4,
@@ -32,6 +35,8 @@ export class MovieRepository {
         description: 'details of the movie',
         imageUrl: '4.jpeg',
         isPopular: false,
+        publishedDate: new Date(1990,5,15),
+        
       },
     ];
   }
