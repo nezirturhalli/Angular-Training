@@ -8,8 +8,8 @@ export class MovieFilterPipe implements PipeTransform {
   transform(movie: Movie[], filterText: string): Movie[] {
     filterText = filterText.toLowerCase();
 
-    console.log(filterText);
-    console.log(movie);
+    // console.log(filterText);
+    // console.log(movie);
 
     return filterText
       ? movie.filter(
