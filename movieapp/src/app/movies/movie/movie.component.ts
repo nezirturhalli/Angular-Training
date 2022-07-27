@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
 import { MovieRepository } from 'src/app/models/movie.repository';
 
+declare let alertify: any;
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -40,16 +42,17 @@ export class MovieComponent implements OnInit {
     // console.log("Successful! Adding to list "+ movie.title+"...");
     // console.log($event.target.classList);
     if ($event.target.classList.contains('btn-primary')) {
-
-      $event.target.innerText="Remove";
+      $event.target.innerText = 'Remove';
       $event.target.classList.remove('btn-primary');
       $event.target.classList.add('btn-danger');
-    }
-    else{
-      
-      $event.target.innerText="Add";
+
+      alertify.success(movie.title + ' added to list!');
+    } else {
+      $event.target.innerText = 'Add';
       $event.target.classList.remove('btn-danger');
       $event.target.classList.add('btn-primary');
+
+      alertify.error(movie.title + ' remove from list!');
     }
   }
 }
