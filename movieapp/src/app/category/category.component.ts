@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoryRepository } from '../models/category.repository';
@@ -8,22 +9,24 @@ import { CategoryRepository } from '../models/category.repository';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  ngOnInit(): void {}
-  categories: Category[];
-  categoryRepository: CategoryRepository;
+  categories: Category[] = [];
   selectedCategory: Category = null;
-  constructor() {
-    this.categoryRepository = new CategoryRepository();
-    this.categories = this.categoryRepository.getCategories();
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http
+      .get<Category[]>('http://localhost:3000/categories')
+      .subscribe((data) => {
+        this.categories = data;
+      });
   }
 
-  displayAll: boolean=true; // disable patch
+  displayAll: boolean = true; // disable patch
 
   selectCategory(item?: Category) {
     if (item) {
       this.selectedCategory = item;
       this.displayAll = false;
-    }else
-    this.selectedCategory = null;
+    } else this.selectedCategory = null;
   }
 }

@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
 import { MovieRepository } from 'src/app/models/movie.repository';
 import { AlertifyService } from 'src/app/services/alertify.service';
-
 
 @Component({
   selector: 'app-movie',
@@ -10,20 +10,17 @@ import { AlertifyService } from 'src/app/services/alertify.service';
   styleUrls: ['./movie.component.css'],
 })
 export class MovieComponent implements OnInit {
-  ngOnInit(): void {}
-  movies: Movie[];
-  filteredMovies: Movie[];
-  popularMovies: Movie[];
-  movieRepository: MovieRepository;
+  movies: Movie[] = [];
+  filteredMovies: Movie[] = [];
   title: string = 'All Movies';
-  today: Date = new Date();
   filterText: string = '';
 
-  constructor(private alertify: AlertifyService) {
-    this.movieRepository = new MovieRepository();
-    this.movies = this.movieRepository.getMovies();
-    this.popularMovies = this.movieRepository.getPopularMovies();
-    this.filteredMovies = this.movies;
+  constructor(private alertify: AlertifyService, private http: HttpClient) {}
+  ngOnInit(): void {
+    this.http.get<Movie[]>('http://localhost:3000/movies').subscribe((data) => {
+      this.movies = data;
+      this.filteredMovies = this.movies;
+    });
   }
 
   onInputChange() {
