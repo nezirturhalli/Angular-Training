@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MovieComponent } from './movies/movie/movie.component';
 import { CategoryComponent } from './category/category.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: CategoryComponent,
   },
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
+  {path:'movies/:movieId',component:MovieDetailsComponent}
 ];
 
 @NgModule({

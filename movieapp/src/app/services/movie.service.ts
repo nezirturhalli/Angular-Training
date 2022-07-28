@@ -8,16 +8,21 @@ import { Movie } from '../models/movie';
 export class MovieService {
   url = 'http://localhost:3000/movies';
   constructor(private http: HttpClient) {}
-  getMovies(categoryId:number): Observable<Movie[]> {
+  getMovies(categoryId: number): Observable<Movie[]> {
+    let newUrl = this.url;
 
-    let newUrl= this.url;
-
-    if(categoryId){
-newUrl+= '?categoryId='+categoryId;
+    if (categoryId) {
+      newUrl += '?categoryId=' + categoryId;
     }
 
-
     return this.http.get<Movie[]>(newUrl).pipe(
+      tap((data) => console.log(data)),
+      catchError(this.handleError)
+    );
+  }
+
+  getMoviesById(movieId: number): Observable<Movie> {
+    return this.http.get<Movie>(this.url + '/' + movieId).pipe(
       tap((data) => console.log(data)),
       catchError(this.handleError)
     );
