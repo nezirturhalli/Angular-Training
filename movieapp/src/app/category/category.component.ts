@@ -18,9 +18,12 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe((data) => {
-      this.categories = data;
-    });
+    this.categoryService.getCategories().subscribe(
+      (data) => {
+        this.categories = data;
+      },
+      (err) => console.log(err)
+    );
   }
 
   displayAll: boolean = true; // disable patch

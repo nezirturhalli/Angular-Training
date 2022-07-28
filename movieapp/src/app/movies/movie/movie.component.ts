@@ -15,15 +15,20 @@ export class MovieComponent implements OnInit {
   title: string = 'All Movies';
   filterText: string = '';
 
+  error: any;
+
   constructor(
     private alertify: AlertifyService,
     private movieService: MovieService
   ) {}
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe((data) => {
-      this.movies = data;
-      this.filteredMovies = this.movies;
-    });
+    this.movieService.getMovies().subscribe(
+      (data) => {
+        this.movies = data;
+        this.filteredMovies = this.movies;
+      },
+      (error) => (this.error = error)
+    );
   }
 
   onInputChange() {
