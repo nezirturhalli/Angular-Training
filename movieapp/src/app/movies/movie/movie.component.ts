@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
-import { MovieRepository } from 'src/app/models/movie.repository';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css'],
+  providers: [MovieService],
 })
 export class MovieComponent implements OnInit {
   movies: Movie[] = [];
@@ -15,9 +15,12 @@ export class MovieComponent implements OnInit {
   title: string = 'All Movies';
   filterText: string = '';
 
-  constructor(private alertify: AlertifyService, private http: HttpClient) {}
+  constructor(
+    private alertify: AlertifyService,
+    private movieService: MovieService
+  ) {}
   ngOnInit(): void {
-    this.http.get<Movie[]>('http://localhost:3000/movies').subscribe((data) => {
+    this.movieService.getMovies().subscribe((data) => {
       this.movies = data;
       this.filteredMovies = this.movies;
     });
