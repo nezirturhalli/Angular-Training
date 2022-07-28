@@ -10,6 +10,7 @@ const routes: Routes = [
     component: MovieComponent,
   },
   { path: '', redirectTo: 'movies', pathMatch: 'full' },
+  {path:'movies/category/:categoryId',component:MovieComponent },
   {
     path: 'categories',
     component: CategoryComponent,

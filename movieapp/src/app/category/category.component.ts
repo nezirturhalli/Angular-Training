@@ -10,7 +10,7 @@ import { CategoryService } from '../services/category.service';
   providers: [CategoryService],
 })
 export class CategoryComponent implements OnInit {
-  categories: Category[] = [];
+  categories: Category[];
   selectedCategory: Category = null;
   constructor(
     private http: HttpClient,
@@ -32,6 +32,10 @@ export class CategoryComponent implements OnInit {
     if (item) {
       this.selectedCategory = item;
       this.displayAll = false;
-    } else this.selectedCategory = null;
+    } else{
+      this.selectedCategory = null;
+      this.displayAll = true;
+
+    } 
   }
 }
