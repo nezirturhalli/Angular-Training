@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from '../models/category';
 import { AlertifyService } from '../services/alertify.service';
@@ -13,6 +14,10 @@ import { MovieService } from '../services/movie.service';
 })
 export class MovieCreateComponent implements OnInit {
   categories: Category[];
+  model: any = {
+    categoryId: '',
+  };
+
   constructor(
     private categoryService: CategoryService,
     private movieService: MovieService,
@@ -26,46 +31,23 @@ export class MovieCreateComponent implements OnInit {
     });
   }
 
-  addMovie(title: any, description: any, imageUrl: any, categoryId: any) {
-    console.log(
-      title.value,
-      description.value,
-      imageUrl.value,
-      categoryId.value
-    );
-
-    if (
-      title.value === '' ||
-      description.value === '' ||
-      categoryId.value === '' ||
-      imageUrl.value === '' ||
-      categoryId.value === ''
-    ) {
-      this.alertify.error('Tüm alanları doldurmalısınız!');
-      return;
-    } else this.alertify.success('Film başarıyla eklendi!');
-
-    const extensionsImage = ['jpeg', 'jpg', 'png'];
-    const extensionForImage = imageUrl.value.split('.').pop();
-
-    if (extensionForImage.indexOf(extensionsImage) === -1) {
-      this.alertify.warning(
-        "sadece 'jpeg','jpg','png' uzantılı resimler ekleyebilirsiniz! "
-      );
-    }
-
+  addMovie() {
     const movie = {
       id: 0,
-      title: title.value,
-      description: description.value,
-      imageUrl: imageUrl.value,
+      title: this.model.title,
+      description: this.model.description,
+      imageUrl: this.model.imageUrl,
       isPopular: false,
       publishedDate: new Date().getTime(),
-      categoryId: categoryId.value,
+      categoryId: this.model.categoryId,
     };
 
     this.movieService.addMovie(movie).subscribe((data) => {
       this.router.navigate(['/movies/' + data.id]);
     });
+  }
+
+  log(value: any) {
+    console.log(value);
   }
 }
