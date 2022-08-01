@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Category } from '../models/category';
 import { AlertifyService } from '../services/alertify.service';
@@ -31,20 +31,45 @@ export class MovieCreateComponent implements OnInit {
     });
   }
 
-  addMovie() {
-    const movie = {
-      id: 0,
-      title: this.model.title,
-      description: this.model.description,
-      imageUrl: this.model.imageUrl,
-      isPopular: false,
-      publishedDate: new Date().getTime(),
-      categoryId: this.model.categoryId,
-    };
+  movieForm = new FormGroup({
+    title: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    description: new FormControl('', [Validators.required]),
+    imageUrl: new FormControl('', [Validators.required]),
+    categoryId: new FormControl('', [Validators.required]),
+  });
 
-    this.movieService.addMovie(movie).subscribe((data) => {
-      this.router.navigate(['/movies/' + data.id]);
+  get title() {
+    return this.movieForm.get('title');
+  }
+
+  clearForm() {
+    this.movieForm.patchValue({
+      title: '',
+      description: '',
+      imageUrl: '',
+      categoryId: '',
     });
+  }
+
+  addMovie() {
+
+    console.log(this.movieForm);
+    console.log(this.movieForm.value);
+    console.log(this.movieForm.value.title);
+
+    // const movie = {
+    //   id: 0,
+    //   title: this.model.title,
+    //   description: this.model.description,
+    //   imageUrl: this.model.imageUrl,
+    //   isPopular: false,
+    //   publishedDate: new Date().getTime(),
+    //   categoryId: this.model.categoryId,
+    // };
+
+    // this.movieService.addMovie(movie).subscribe((data) => {
+    //   this.router.navigate(['/movies/' + data.id]);
+    // });
   }
 
   log(value: any) {
