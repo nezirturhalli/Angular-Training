@@ -1,4 +1,3 @@
-
 {
   "movies": [
     {
@@ -37,49 +36,22 @@
       "categoryId": 4
     },
     {
+      "id": 6,
+      "title": "",
+      "description": "",
+      "imageUrl": "",
+      "isPopular": false,
+      "publishedDate": 1659335045915,
+      "categoryId": ""
+    },
+    {
       "id": 7,
-      "title": "Deneme",
-      "description": "test",
-      "imageUrl": "3.jpeg",
+      "title": "",
+      "description": "",
+      "imageUrl": "",
       "isPopular": false,
-      "publishedDate": 1659079953603,
-      "categoryId": "2"
-    },
-    {
-      "id": 8,
-      "title": "test2",
-      "description": "test2",
-      "imageUrl": "5.jpeg",
-      "isPopular": false,
-      "publishedDate": 1659080016795,
-      "categoryId": "4"
-    },
-    {
-      "id": 9,
-      "title": "Test5",
-      "description": "test1231",
-      "imageUrl": "4.jpeg",
-      "isPopular": false,
-      "publishedDate": 1659083286162,
-      "categoryId": "5"
-    },
-    {
-      "id": 10,
-      "title": "asd",
-      "description": "asdasd",
-      "imageUrl": "1.jpeg",
-      "isPopular": false,
-      "publishedDate": 1659083414085,
-      "categoryId": "3"
-    },
-    {
-      "id": 11,
-      "title": "DENEMEEEEEE",
-      "description": "asdhgasgdsahdhjsagdhjasgjghjasjgdhasgjdha",
-      "imageUrl": "3.jpeg",
-      "isPopular": false,
-      "publishedDate": 1659086903283,
-      "categoryId": "4"
+      "publishedDate": 1659335054316,
+      "categoryId": ""
     }
   ],
   "categories": [
