@@ -37,21 +37,12 @@
     },
     {
       "id": 6,
-      "title": "",
-      "description": "",
-      "imageUrl": "",
+      "title": "Demo1",
+      "description": "demo1",
+      "imageUrl": "1.jpeg",
       "isPopular": false,
-      "publishedDate": 1659335045915,
-      "categoryId": ""
-    },
-    {
-      "id": 7,
-      "title": "",
-      "description": "",
-      "imageUrl": "",
-      "isPopular": false,
-      "publishedDate": 1659335054316,
-      "categoryId": ""
+      "publishedDate": 1659335783546,
+      "categoryId": "1"
     }
   ],
   "categories": [

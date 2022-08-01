@@ -50,12 +50,16 @@ export class MovieCreateComponent implements OnInit {
   }
 
   clearForm() {
-    this.movieForm.patchValue({
-      title: '',
-      description: '',
-      imageUrl: '',
-      categoryId: '',
-    });
+    this.movieForm.controls['description'].reset();
+    this.movieForm.controls['title'].reset();
+    this.movieForm.controls['imageUrl'].reset();
+    this.movieForm.controls['categoryId'].reset();
+    // this.movieForm.patchValue({
+    //   title: '',
+    //   description: '',
+    //   imageUrl: '',
+    //   categoryId: '',
+    // });
   }
 
   addMovie() {
